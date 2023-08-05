@@ -12,7 +12,7 @@ const NavMain = ({ address, handleAddressUpdate, handleApiUpdate, currentApi }) 
             <div id="navbar_main_section">
                 <nav className="navbar navbar-expand-md bg-dark border-bottom border-bottom-dark  sticky-top p-3 " data-bs-theme="dark" role="navigation">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="/"><h5 className=" mt-0 mb-0">X</h5></a>
+                        <h5 className="text-white mt-0 mb-0">X <a className="navbar-brand text-primary" href="https://github.com/sudo-Kunal-Mahajan/algo-tpser" target="_blank" rel="noreferrer">(Github)</a></h5>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@ const NavMain = ({ address, handleAddressUpdate, handleApiUpdate, currentApi }) 
                                         <li className="nav-item dropdown ">
                                             <button className="nav-link dropdown-toggle" id="navbar_profile_link"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                                <img src='/profile.png' width="20" alt="profile" />
+                                                <img src={process.env.PUBLIC_URL+'/profile.png'} width="20" alt="profile" />
                                             </button>
                                             <ul className="dropdown-menu dropdown-menu-end" style={{ right: 0 }} aria-labelledby="navbar_profile_link">
 
