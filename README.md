@@ -5,9 +5,9 @@ This is a basic Algorand App providing a GUI to send batch transactions at user 
 
 - On the GUI, user can either Import their account with seed phrase or generate a new address.
 
-- After importing the account, user can send batch transactions to their desired wallet. Max transactions in a batch is customizable.
+- After importing the account, user can send batch transactions to their desired wallet. Max transactions in a batch is customizable. Default is set to 10.
 
-- Amount per transaction can also be customized and is 2 microAlgos minimum.
+- Amount per transaction can also be customized and is 0 microAlgo by default.
 
 ## Pair up your own node or configure API endpoint
 
