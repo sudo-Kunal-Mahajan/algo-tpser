@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/algo-tpser/static/css/main.da3089f3.css",
-    "main.js": "/algo-tpser/static/js/main.2f2211fb.js",
+    "main.js": "/algo-tpser/static/js/main.59bcdaac.js",
     "index.html": "/algo-tpser/index.html",
     "main.da3089f3.css.map": "/algo-tpser/static/css/main.da3089f3.css.map",
-    "main.2f2211fb.js.map": "/algo-tpser/static/js/main.2f2211fb.js.map"
+    "main.59bcdaac.js.map": "/algo-tpser/static/js/main.59bcdaac.js.map"
   },
   "entrypoints": [
     "static/css/main.da3089f3.css",
-    "static/js/main.2f2211fb.js"
+    "static/js/main.59bcdaac.js"
   ]
 }
