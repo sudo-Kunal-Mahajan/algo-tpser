@@ -2,7 +2,7 @@ import algosdk from "algosdk";
 import { useEffect, useRef, useState } from "react";
 
 const SendAlgo = ({ pub_key, HandleTrxSign, maxAllowedSend, algodClient }) => {
-    const [formData, setFormData] = useState({ "recPub": "", "message": "", "amount": "", "maxBatch": 10 })
+    const [formData, setFormData] = useState({ "recPub": "", "message": "", "amount": "0", "maxBatch": "10" })
     const [stopTrx, setStopTrx] = useState(false);
     const [counter,setCounter] = useState(0);
     const [submitting, setSubmitting] = useState(false);
@@ -92,15 +92,15 @@ const SendAlgo = ({ pub_key, HandleTrxSign, maxAllowedSend, algodClient }) => {
                             </div>
                             <div className="mb-3 ">
                                 <label htmlFor="amount" className="form-label">Amount (in micro algo)</label>
-                                <input type="number" className="form-control" name="amount" id="amount" min={2} value={formData.amount} onChange={handleFormData} />
+                                <input type="number" className="form-control" name="amount" id="amount" min={0} value={formData.amount} onChange={handleFormData} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="messageInput" className="form-label">Optional Note</label>
                                 <textarea className="form-control" name="message" id="messageInput" rows="3" value={formData.message} onChange={handleFormData}></textarea>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="maxAllowedSend" className="form-label">Max Batch</label>
-                                <input type="number" className="form-control" name="maxAllowedSend" min={1} id="maxAllowedSend" onChange={handleFormData} value={formData.maxBatch}  />
+                                <label htmlFor="maxBatch" className="form-label">Max Batch</label>
+                                <input type="number" className="form-control" name="maxBatch" min={1} id="maxBatch" onChange={handleFormData} value={formData.maxBatch} />
                             </div>
                             <div className="mb-3 row justify-content-center">
                                 <button type="submit" className={`btn ${submitting ? 'btn-secondary' : 'btn-primary'} col-4 mx-2`} disabled={submitting}>{submitting ? "Please Wait..." : "Submit"}</button>
