@@ -62,7 +62,7 @@ function App() {
 			<NavMain address={address} handleAddressUpdate={handleAddressUpdate} currentApi={currentApi} handleApiUpdate={handleApiUpdate} />
 			<div className="App flex-grow-1">
 				<div className="container-fluid mt-3">
-					{address && (
+					{address ? (
 						<>
 							<div className="row">
 								<div className="col-12 text-center">
@@ -108,7 +108,27 @@ function App() {
 								</div>
 							</div>
 						</>
+					) : (<>
+						<div className="card card-body mt-3">
+						<strong className='text-danger text-center'>Your mnemonic never leaves the browser but it is also not securely stored. So, consider using dummy accounts.<br/> Generate a wallet and feed it with the amount you want to spend. </strong>
+
+							<ul className='mt-3'>
+								<li>
+								 Import your mnemonic or Generate a new address from the provided buttons in navbar.
+								</li>
+								<li>
+								You can switch the network too from the NavBar itself.
+								</li>
+								<li>
+									If you are using TestNet, you can get Test Algo using the dispenser from this link: <a href="https://bank.t	estnet.algorand.network/" target="_blank" rel="noreferrer">https://bank.testnet.algorand.network/</a>
+								</li>
+							</ul>
+						</div>
+						
+						
+						</>		
 					)}
+
 				</div>
 			</div>
 			<FooterMain which_api={"AlgoNode (" + currentApi() +")"} />

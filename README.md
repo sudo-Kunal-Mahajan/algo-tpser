@@ -9,6 +9,8 @@ This is a basic Algorand App providing a GUI to send batch transactions at user 
 
 - Amount per transaction can also be customized and is 0 microAlgo by default.
 
+- Maximum number of transactions that will be sent in total can be defined. 0 means no limit.
+
 ## Pair up your own node or configure API endpoint
 
 - Clone the repo.
