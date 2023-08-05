@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+This is a basic Algorand App providing a GUI to send batch transactions at user defined speed to their desired wallet. Uses AlgoNode API to push the transactions (user can pair up their own nodes as well).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to?
 
-## Available Scripts
 
-In the project directory, you can run:
+- On the GUI, user can either Import their account with seed phrase or generate a new address.
 
-### `npm start`
+- After importing the account, user can send batch transactions to their desired wallet. Max transactions in a batch is customizable.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Amount per transaction can also be customized and is 2 microAlgos minimum.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pair up your own node or configure API endpoint
 
-### `npm test`
+- Clone the repo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Run `npm install` to install all the dependencies.
 
-### `npm run build`
+- Configure your API source for getting data.
+    - Create a ".env" file in source folder and provide it with the PureStake API key. (REACT_APP_PURE_STAKE_API_KEY="XXXXXXXX")
+    - Or, you can use AlgoNodes API. To do so, go to "src/utils/AlgorandUtils.js". There, uncomment the  AlgoNode API config and comment the PureStake API.
+    - Or, you can just provide your own Algod token for local node ( usually 'a' * 64 ).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Run `npm start` to start the project.
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Let me know if you have any queries or suggestions. Send out a pull request if you want to contribute. 
+Starring the repo would be appreciated. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## FYI
+You can dust in my account as well ;-)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+``` 
+  Algorand: NA4VOZFZFSGZM6AQMMUMEIDSPQXN4GLEDE7OD4SFVNHV7APXIIWNL62AT4
+```
