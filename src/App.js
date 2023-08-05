@@ -3,12 +3,11 @@ import NavMain from './component/NavBar';
 import { useState, useEffect } from 'react';
 import algosdk from 'algosdk';
 import SendAlgo from './component/sendAlgo';
-import { algodClient } from './utils/AlgorandUtils';
+import { algodMainClient, algodTestClient } from './utils/AlgorandUtils';
 function App() {
 	const [accountInfo, setAccountInfo] = useState(null);
 	const [address, setAddress] = useState(null);
-
-
+	const [algodClient, setAlgodClient] = useState(algodTestClient);
 	const handleAddressUpdate = (address) => {
 		localStorage.removeItem("address")
 		localStorage.setItem("address", JSON.stringify(address))
@@ -23,9 +22,25 @@ function App() {
 	useEffect(() => {
 		setAddress(localStorage.getItem("address") ? JSON.parse(localStorage.getItem("address")) : null)
 	}, [])
+
+	const currentApi = () => {
+		if (algodClient === algodTestClient) {
+			return "Testnet"
+		} else {
+			return "Mainnet"
+		}
+	}
+
+	const handleApiUpdate = (api) => {
+		if (api.target.value === "Testnet") {
+			setAlgodClient(algodTestClient)
+		} else {
+			setAlgodClient(algodMainClient)
+		}
+	}
+
 	useEffect(() => {
 		if (address != null) {
-
 			const fetchAssets = async () => {
 				try {
 					const accountInfo = await algodClient.accountInformation(address.addr).do();
@@ -34,17 +49,16 @@ function App() {
 
 				} catch (error) {
 					console.error('Error fetching assets:', error);
-
 					setAccountInfo(null)
-				}
+				} 
 			}
 			fetchAssets();
-
 		}
-	}, [address]);
+	}, [address,algodClient]);
+	
 	return (
 		<>
-			<NavMain address={address} handleAddressUpdate={handleAddressUpdate} />
+			<NavMain address={address} handleAddressUpdate={handleAddressUpdate} currentApi={currentApi} handleApiUpdate={handleApiUpdate} />
 			<div className="App flex-grow-1">
 				<div className="container-fluid mt-3">
 					{address && (
@@ -61,7 +75,7 @@ function App() {
 											<h5 className="card-title">Send Algos</h5>
 										</div>
 										<div className='card-body'>
-											<SendAlgo pub_key={address.addr} HandleTrxSign={HandleTrxSign} maxAllowedSend={accountInfo && (accountInfo["amount"] - accountInfo["min-balance"])} />
+											<SendAlgo pub_key={address.addr} HandleTrxSign={HandleTrxSign} algodClient={algodClient} maxAllowedSend={accountInfo && (accountInfo["amount"] - accountInfo["min-balance"])} />
 										</div>
 									</div>
 								</div>

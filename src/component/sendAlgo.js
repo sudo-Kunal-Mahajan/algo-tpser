@@ -1,13 +1,14 @@
 import algosdk from "algosdk";
-import { algodClient } from "../utils/AlgorandUtils";
 import { useEffect, useRef, useState } from "react";
 
-const SendAlgo = ({ pub_key, HandleTrxSign, maxAllowedSend }) => {
+const SendAlgo = ({ pub_key, HandleTrxSign, maxAllowedSend, algodClient }) => {
     const [formData, setFormData] = useState({ "recPub": "", "message": "", "amount": "", "maxBatch": 10 })
     const [stopTrx, setStopTrx] = useState(false);
     const [counter,setCounter] = useState(0);
     const [submitting, setSubmitting] = useState(false);
     const breakLoop =useRef(false);
+    const maxAllowedSendRef = useRef(maxAllowedSend);
+    
     const handleFormData = (event) => {
         const { name, value } = event.target
         setFormData((prevFormData) => ({
@@ -16,6 +17,9 @@ const SendAlgo = ({ pub_key, HandleTrxSign, maxAllowedSend }) => {
         })
         )
     };
+    useEffect(() => {
+        maxAllowedSendRef.current = maxAllowedSend;
+    }, [maxAllowedSend])
     useEffect(() => {
         if (stopTrx) {
             setSubmitting(false);
@@ -30,17 +34,17 @@ const SendAlgo = ({ pub_key, HandleTrxSign, maxAllowedSend }) => {
     }
 
     const trxHandler = async () => {
-        const amount_main = (Math.round(parseFloat(formData.amount)) + 1000)
         
-        while (maxAllowedSend>amount_main && !breakLoop.current) {
-            const batchSize =  parseInt(formData.maxBatch)
-                console.log(stopTrx)
-                const transactions = Array.from({ length: batchSize }, () => HandleTransaction());
-                await Promise.all(transactions).then(() => {
-                    setCounter(counter => counter+batchSize)
-                })
-                console.log(transactions)
-                maxAllowedSend = maxAllowedSend - amount_main * batchSize           
+        const amount_main = (Math.round(parseFloat(formData.amount)) + 1000)
+        const batchSize =  parseInt(formData.maxBatch)
+        console.log(maxAllowedSendRef.current  )
+        while (maxAllowedSendRef.current > amount_main && !breakLoop.current) {
+            const transactions = Array.from({ length: batchSize }, () => HandleTransaction());
+            await Promise.all(transactions).then(() => {
+                setCounter(counter => counter+batchSize)
+            })
+            console.log(transactions)
+            maxAllowedSendRef.current = maxAllowedSendRef.current - amount_main * batchSize           
         }
         setSubmitting(false);
     }
