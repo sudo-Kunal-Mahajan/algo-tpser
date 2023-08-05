@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import algosdk from 'algosdk';
 import SendAlgo from './component/sendAlgo';
 import { algodMainClient, algodTestClient } from './utils/AlgorandUtils';
+import FooterMain from './Footer';
 function App() {
 	const [accountInfo, setAccountInfo] = useState(null);
 	const [address, setAddress] = useState(null);
@@ -55,7 +56,7 @@ function App() {
 			fetchAssets();
 		}
 	}, [address,algodClient]);
-	
+
 	return (
 		<>
 			<NavMain address={address} handleAddressUpdate={handleAddressUpdate} currentApi={currentApi} handleApiUpdate={handleApiUpdate} />
@@ -89,10 +90,28 @@ function App() {
 									</div>
 								</div>
 							</div>
+				
+							<div className='row mt-3'>
+								<div className="col-12 card card-body">
+									<ul>
+										<li>
+										You can dust to my account @NA4VOZFZFSGZM6AQMMUMEIDSPQXN4GLEDE7OD4SFVNHV7APXIIWNL62AT4 ;-&#41;
+										</li>
+										<li>
+											The code has no fail-safe other than the stop button. So, if you are sending a lot of transactions, make sure you have enough balance to cover the fee of all the transactions. 
+										</li>
+										<li>
+											Currently deployed using the AlgoNode Free API which restricts the max transaction per second. To get most out of the app, you can pair up the code with your own node ( utils\AlgorandUtils.js ).
+										</li>
+									</ul>
+									
+								</div>
+							</div>
 						</>
 					)}
 				</div>
 			</div>
+			<FooterMain which_api={"AlgoNode (" + currentApi() +")"} />
 		</>
 
 	);
